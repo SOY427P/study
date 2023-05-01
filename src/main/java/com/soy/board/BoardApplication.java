@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BoardApplication {
 
     public static void main(String[] args) {
+        // gdㅎㅇ
         SpringApplication.run(BoardApplication.class, args);
     }
 
