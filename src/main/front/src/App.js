@@ -1,73 +1,53 @@
-import './App.css';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
+
+import {Navigation} from 'react-minimal-side-navigation';
+import Icon from "awesome-react-icons";
+import 'react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css';
 
 function App() {
-    const [board, setBoard] = useState([]);
-    useEffect(() => {
-        fetch("/board/api/list")
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                setBoard(data);
-            });
-    }, []);
-
-    const date_formatter = function (val) {
-        return new Date(val).toLocaleDateString();
-    };
     return (
-        <div className="App">
-            <table border="1" width="80%" height="200">
-                <caption>게시판</caption>
-                <thead>
-                <tr align="center">
-                    <td></td>
-                    <th>제목</th>
-                    <th>내용</th>
-                    <th>작성자</th>
-                    <th>작성일</th>
-                </tr>
-                </thead>
-                <tbody>
-                {board.map(b => (
-                    <tr key={b.id} align="center">
-                        <td>{b.id}</td>
-                        <td>{b.title}</td>
-                        <td>{b.contents}</td>
-                        <td>{b.writer}</td>
-                        <td>{date_formatter(b.reg_date)}</td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-        </div>
+        <>
+            <Navigation
+                // you can use your own router's api to get pathname
+                activeItemId="/management/members"
+                onSelect={({itemId}) => {
+                    // maybe push to the route
+                }}
+                items={[
+                    {
+                        title: 'Dashboard',
+                        itemId: '/dashboard',
+                        // you can use your own custom Icon component as well
+                        // icon is optional
+                        elemBefore: () => <Icon name="inbox" />,
+                    },
+                    {
+                        title: 'Management',
+                        itemId: '/management',
+                        elemBefore: () => <Icon name="users" />,
+                        subNav: [
+                            {
+                                title: 'Projects',
+                                itemId: '/management/projects',
+                            },
+                            {
+                                title: 'Members',
+                                itemId: '/management/members',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Another Item',
+                        itemId: '/another',
+                        subNav: [
+                            {
+                                title: 'Teams',
+                                itemId: '/management/teams',
+                            },
+                        ],
+                    },
+                ]}
+            />
+        </>
     );
 }
-
-export default App;
-
-
-/*
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}*/
-
-
