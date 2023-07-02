@@ -1,3 +1,5 @@
+import React, { Component } from 'react';
+import Gnb from "./component/common/gnb";
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Posts from "./component/admin/Posts";
@@ -9,10 +11,14 @@ import Setting_contents from "./component/admin/Setting_contents";
 import Main from "./component/admin/main";
 
 
+import './css/common/common.css';
 
 function App() {
     return (
         <div id="kakaoContent" role="main">
+            <div id="kakaoWrap" className="tistory_type1 tistory_type4">
+                <Gnb/>
+            </div>
             <div id="cMain">
                 <BrowserRouter>
                     <Routes>
@@ -30,6 +36,3 @@ function App() {
     );
 }
 export default App;
-
-
-
