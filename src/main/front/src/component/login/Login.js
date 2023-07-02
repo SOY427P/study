@@ -6,7 +6,7 @@ import '../../css/login/top.css';
 
 const Login = () => {
     return (
-        <div id="kakaoWrap">
+        <div>
             <LoginHeader/>
             <hr class="hide"></hr>
             <LoginContent/>
