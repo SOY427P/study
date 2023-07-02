@@ -1,73 +1,38 @@
+import React, { Component } from 'react';
+import Gnb from "./component/common/gnb";
 import './App.css';
-import React, {useEffect, useState} from 'react';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Posts from "./component/admin/Posts";
+import Pages from "./component/admin/Pages";
+import Category from "./component/admin/Category";
+import Notices from "./component/admin/Notices";
+import Templates from "./component/admin/Templates";
+import Setting_contents from "./component/admin/Setting_contents";
+import Main from "./component/admin/main";
+
+
+import './css/common/common.css';
 
 function App() {
-    const [board, setBoard] = useState([]);
-    useEffect(() => {
-        fetch("/board/api/list")
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                setBoard(data);
-            });
-    }, []);
-
-    const date_formatter = function (val) {
-        return new Date(val).toLocaleDateString();
-    };
     return (
-        <div className="App">
-            <table border="1" width="80%" height="200">
-                <caption>게시판</caption>
-                <thead>
-                <tr align="center">
-                    <td></td>
-                    <th>제목</th>
-                    <th>내용</th>
-                    <th>작성자</th>
-                    <th>작성일</th>
-                </tr>
-                </thead>
-                <tbody>
-                {board.map(b => (
-                    <tr key={b.id} align="center">
-                        <td>{b.id}</td>
-                        <td>{b.title}</td>
-                        <td>{b.contents}</td>
-                        <td>{b.writer}</td>
-                        <td>{date_formatter(b.reg_date)}</td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
+        <div id="kakaoContent" role="main">
+            <div id="kakaoWrap" className="tistory_type1 tistory_type4">
+                <Gnb/>
+            </div>
+            <div id="cMain">
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/manage" element={<Main />}> </Route>
+                        <Route path="/manage/posts" element={<Posts />}> </Route>
+                        <Route path="/manage/pages" element={<Pages />}> </Route>
+                        <Route path="/manage/category" element={<Category />}> </Route>
+                        <Route path="/manage/notices" element={<Notices />}> </Route>
+                        <Route path="/manage/templates" element={<Templates />}> </Route>
+                        <Route path="/manage/setting/contents" element={<Setting_contents />}> </Route>
+                    </Routes>
+                </BrowserRouter>
+            </div>
         </div>
     );
 }
-
 export default App;
-
-
-/*
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}*/
-
-
