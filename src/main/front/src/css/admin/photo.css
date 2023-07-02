@@ -1,0 +1,8 @@
+@charset "utf-8";
+
+.ke_photos {
+    position: fixed;
+    inset: 0px;
+    z-index: 1300;
+    display: none;
+}
