@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Gnb from "./component/common/gnb";
-import './App.css';
+// import ReactDOM from 'react-dom/client';
+import reportWebVitals from './reportWebVitals';
+// import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Posts from "./component/admin/Posts";
 import Pages from "./component/admin/Pages";
@@ -9,7 +11,7 @@ import Notices from "./component/admin/Notices";
 import Templates from "./component/admin/Templates";
 import Setting_contents from "./component/admin/Setting_contents";
 import Main from "./component/admin/main";
-
+import MainPage from './component/main/MainPage';
 
 import './css/common/common.css';
 
@@ -32,7 +34,10 @@ function App() {
                     </Routes>
                 </BrowserRouter>
             </div>
+            <MainPage/>
         </div>
+        
     );
+    
 }
 export default App;
